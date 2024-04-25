@@ -46,11 +46,16 @@ if (chavy.isRequest) {
 
 
 function getData() {
+    console.log("geDatat")
+
     chavy.setdata(KEY_signurl, "https://link-ai.tech/api/chat/web/app/user/sign/in")
     var headerauth = $request.headers['authorization']
+    console.log(headerauth)
+    console.log(VAL_signheaderauth)    
     if (headerauth) {
         if (VAL_signheaderauth != undefined) {
             var cookie = chavy.setdata(KEY_signheaderauth, headerauth);
+            console.log(cookie)
             if (!cookie) {
                 chavy.msg("更新linkai auth 失败", "", "");
             } else {
@@ -58,6 +63,7 @@ function getData() {
             }
         } else {
             var cookie = chavy.setdata(KEY_signheaderauth, headerauth);
+            console.log(cookie)
             if (!cookie) {
                 chavy.msg("首次写入linkai auth失败‼️", "", "");
             } else {
