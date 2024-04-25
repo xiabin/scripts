@@ -149,4 +149,7 @@ function init() {
     isRequest = typeof $request != "undefined"
 
     return { isSurge, isQuanX, msg, log, getdata, setdata, get, post, done，isRequest }
-} /Users/xiabin / scripts
+} 
+
+
+
