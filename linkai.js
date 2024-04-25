@@ -69,19 +69,20 @@ function getData() {
 }
 
 function signapp() {
-    const headers = {
-        "accept": "application/json, text/plain, */*",
-        "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
-        "authorization": VAL_signheaderauth,
-        "cache-control": "no-cache",
-        "pragma": "no-cache",
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-origin",
-        "Referer": "https://link-ai.tech/console/account",
-        "Referrer-Policy": "strict-origin-when-cross-origin"
-    };
+
     return new Promise((resolve, reject) => {
+        const headers = {
+            "accept": "application/json, text/plain, */*",
+            "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+            "authorization": VAL_signheaderauth,
+            "cache-control": "no-cache",
+            "pragma": "no-cache",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "Referer": "https://link-ai.tech/console/account",
+            "Referrer-Policy": "strict-origin-when-cross-origin"
+        };
         const url = { url: VAL_signurl, headers: headers }
         chavy.get(url, (error, response, data) => {
             try {
@@ -101,7 +102,7 @@ function signapp() {
                 chavy.log(`❌ ${cookieName} sign - response: ${JSON.stringify(response)}`)
                 resolve()
             }
-        })
+        }).catch().finally();
     })
 }
 
