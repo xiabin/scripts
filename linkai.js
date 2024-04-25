@@ -32,7 +32,7 @@ let VAL_signheaderauth = chavy.getdata(KEY_signheaderauth)
 
 
 if (chavy.isRequest) {
-    Getdata()
+    getData()
 } else {
     ; (exec = async () => {
         chavy.log(`🔔 ${cookieName} 开始签到`)
