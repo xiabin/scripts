@@ -11,7 +11,7 @@ QuantumultX 本地脚本配置:
 
 [rewrite_local]
 # 获取Cookie
-https:\/\/link-ai\.tech\/.* url script-request-header linkai.js
+https:\/\/link-ai\.tech\/.* url script-request-header https://raw.githubusercontent.com/xiabin/scripts/main/linkai.js
 
 [mitm] 
 hostname= *.link-ai.tech
@@ -148,7 +148,7 @@ function init() {
     }
     isRequest = typeof $request != "undefined"
 
-    return { isSurge, isQuanX, msg, log, getdata, setdata, get, post, done，isRequest }
+    return { isSurge, isQuanX, msg, log, getdata, setdata, get, post, done,isRequest }
 } 
 
 
