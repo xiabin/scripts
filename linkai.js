@@ -102,7 +102,7 @@ function signapp() {
                 chavy.log(`❌ ${cookieName} sign - response: ${JSON.stringify(response)}`)
                 resolve()
             }
-        }).catch().finally();
+        })
     })
 }
 
