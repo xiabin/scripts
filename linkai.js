@@ -123,6 +123,8 @@ function signapp() {
 
 
 function init() {
+
+    const $ = new Env("linkai");
     isSurge = () => {
         return undefined === this.$httpClient ? false : true
     }
