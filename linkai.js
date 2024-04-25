@@ -81,39 +81,43 @@ function signapp() {
     return new Promise((resolve, reject) => {
         console.log(VAL_signheaderauth)
         console.log(VAL_signurl)
-        const headers = {
-            "accept": "application/json, text/plain, */*",
-            "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
-            "authorization": VAL_signheaderauth,
-            "cache-control": "no-cache",
-            "pragma": "no-cache",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-origin",
-            "Referer": "https://link-ai.tech/console/account",
-            "Referrer-Policy": "strict-origin-when-cross-origin"
-        };
-        const url = { url: VAL_signurl, headers: headers }
-        chavy.get(url, (error, response, data) => {
-            console.log("请求结束")
-            try {
-                let msg;
-                console.log(response.body);
-                const obj = JSON.parse(response.body)
-                if (obj.message) {
-                    msg = obj.message
-                } else {
-                    msg = response.body
+        if(VAL_signheaderauth){
+            const headers = {
+                "accept": "application/json, text/plain, */*",
+                "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+                "authorization": VAL_signheaderauth,
+                "cache-control": "no-cache",
+                "pragma": "no-cache",
+                "sec-fetch-dest": "empty",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-site": "same-origin",
+                "Referer": "https://link-ai.tech/console/account",
+                "Referrer-Policy": "strict-origin-when-cross-origin"
+            };
+            const url = { url: VAL_signurl, headers: headers }
+            chavy.get(url, (error, response, data) => {
+                console.log("请求结束")
+                try {
+                    let msg;
+                    console.log(response.body);
+                    const obj = JSON.parse(response.body)
+                    if (obj.message) {
+                        msg = obj.message
+                    } else {
+                        msg = response.body
+                    }
+                    chavy.msg("link-ai", "签到情况", msg); // Success!
+                } catch (e) {
+                    chavy.msg(cookieName, `签到结果: 失败`, `说明: ${e}`)
+                    chavy.log(`❌ ${cookieName} sign - 签到失败: ${e}`)
+                    chavy.log(`❌ ${cookieName} sign - response: ${JSON.stringify(response)}`)
                 }
-                chavy.msg("link-ai", "签到情况", msg); // Success!
                 resolve()
-            } catch (e) {
-                chavy.msg(cookieName, `签到结果: 失败`, `说明: ${e}`)
-                chavy.log(`❌ ${cookieName} sign - 签到失败: ${e}`)
-                chavy.log(`❌ ${cookieName} sign - response: ${JSON.stringify(response)}`)
-                resolve()
-            }
-        })
+            })
+        }else{
+            resolve()
+        }
+        
     })
 }
 
