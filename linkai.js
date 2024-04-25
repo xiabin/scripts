@@ -39,6 +39,7 @@ if (chavy.isRequest) {
     ; (exec = async () => {
         chavy.log(`🔔 ${cookieName} 开始签到`)
         await signapp()
+        chavy.log(`🔔 ${cookieName} 签到结束`)
     })().catch((e) => chavy.log(`❌ ${cookieName} 签到失败: ${e}`))
         .finally(() => chavy.done())
 
@@ -78,6 +79,8 @@ function getData() {
 function signapp() {
 
     return new Promise((resolve, reject) => {
+        console.log(VAL_signheaderauth)
+        console.log(VAL_signurl)
         const headers = {
             "accept": "application/json, text/plain, */*",
             "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
@@ -92,6 +95,7 @@ function signapp() {
         };
         const url = { url: VAL_signurl, headers: headers }
         chavy.get(url, (error, response, data) => {
+            console.log("请求结束")
             try {
                 let msg;
                 console.log(response.body);
