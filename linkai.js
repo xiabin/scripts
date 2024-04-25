@@ -47,7 +47,6 @@ if (chavy.isRequest) {
 
 function getData() {
     chavy.setdata(KEY_signurl, "https://link-ai.tech/api/chat/web/app/user/sign/in")
-    console.log($request.headers)
     var headerauth = $request.headers['authorization']
     if (headerauth) {
         if (VAL_signheaderauth != undefined) {
