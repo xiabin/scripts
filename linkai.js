@@ -11,6 +11,8 @@ QuantumultX 本地脚本配置:
 
 [rewrite_local]
 # 获取Cookie
+
+https://link-ai.tech/*
 https:\/\/link-ai\.tech\/.* url script-request-header https://raw.githubusercontent.com/xiabin/scripts/main/linkai.js
 
 [mitm] 
@@ -30,7 +32,7 @@ let VAL_signurl = chavy.getdata(KEY_signurl)
 let VAL_signheaderauth = chavy.getdata(KEY_signheaderauth)
 
 
-
+console.log("运行了")
 if (chavy.isRequest) {
     getData()
 } else {
@@ -45,7 +47,8 @@ if (chavy.isRequest) {
 
 function getData() {
     chavy.setdata(KEY_signurl, "https://link-ai.tech/api/chat/web/app/user/sign/in")
-    var headerauth = $request.header['authorization']
+    console.log($request.headers)
+    var headerauth = $request.headers['authorization']
     if (headerauth) {
         if (VAL_signheaderauth != undefined) {
             var cookie = chavy.setdata(KEY_signheaderauth, headerauth);
